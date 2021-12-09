@@ -12,18 +12,16 @@ public class EmailSenderService {
 
 	 
 
-	    public void sendSimpleEmail(String toEmail,
-	                                String body,
-	                                String subject) {
+	    public void sendSimpleEmail(String body) {
 	         //creating message
 	        SimpleMailMessage message = new SimpleMailMessage();
 
 	 
 
-	        message.setFrom("apurvasuniljadhav123@gmail.com");
-	        message.setTo(toEmail);
+	        message.setFrom("anushkajadhav966@gmail.com");
+	        message.setTo("apurvasuniljadhav123@gmail.com");
 	        message.setText(body);
-	        message.setSubject(subject);
+	        message.setSubject("Welcome");
 	      //  message.setCc(cc);
 	     //   message.setBcc(bcc);
 	     //  sending message 
