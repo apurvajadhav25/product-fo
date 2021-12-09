@@ -16,7 +16,7 @@ public class Product {
 	long discount;
 	String gender;
 	int rating;
-	String imageUrl;
+	String imagePath;
 	String filter1;
 	String filter2;
 	String filter3;
@@ -63,11 +63,11 @@ public class Product {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImagePath() {
+		return imagePath;
 	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImageUrl(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	public String getFilter1() {
 		return filter1;
@@ -111,8 +111,5 @@ public class Product {
 	public void setDiscount(long discount) {
 		this.discount = discount;
 	}
-	
-	
-
 	
 }

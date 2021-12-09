@@ -1,9 +1,6 @@
 package com.demo.model;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,8 +28,5 @@ public class Filter1 {
 	public void setIsEnable(Boolean isEnable) {
 		this.isEnable = isEnable;
 	}
-	
-	@OneToMany(mappedBy = "filter1")
-	Set<Product1> product1;
 
 }

@@ -9,6 +9,7 @@ public class Image {
 	@Id
 	int id;
 	String path;
+	
 	@ManyToOne()
 	Product product;
 	

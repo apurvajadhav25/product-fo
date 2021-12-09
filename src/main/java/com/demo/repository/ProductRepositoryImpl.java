@@ -11,9 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
-
 import com.demo.model.Product;
 
 @Repository
@@ -23,18 +21,12 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 	
 	@Override
 	public List<Product> findProducts(String filter1, String filter2, String price,String sort) {
-		System.out.println(sort);
 		
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 	    CriteriaQuery<Product> cq = cb.createQuery(Product.class);
 
 	    Root<Product> product = cq.from(Product.class);
 	  
-		/*
-		 * In<String> inClause3 = cb.in(product.get("price")); for (String title3 :
-		 * priceArray) { inClause3.value(title3);
-		 * System.out.println(inClause3.value(title3)); }
-		 */
 	    List<Predicate> predicates = new ArrayList<>();
 	    
 	    if (filter1 != null) {
@@ -45,6 +37,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 			}
 	        predicates.add(inClause1);
 	    }
+	    
 	    if (filter2 != null) {
 	    	String filter2Array[] = filter2.split(",");
 	    	In<String> inClause2 = cb.in(product.get("filter2"));
@@ -53,6 +46,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 			}
 	        predicates.add(inClause2);
 	    }
+	    
 	    if (price != null) {
 	    	 String[] priceArray = price.split("-");
 	    	 int startPrice = Integer.parseInt(priceArray[0]);
@@ -66,17 +60,8 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 	    	  cq.orderBy(cb.asc(product.get("price")));  
 	    	else
 	    	  cq.orderBy(cb.desc(product.get("price")));
-	    		
 	    }
 	     
-	   // cb(product.get(Product.price), 2000L, 4000L)
-	   
-	    //  Predicate greaterThanPrice = cb.le(product.get("price"),50000);
-		//  Predicate date = cb.gt(product.get("price").bt);
-		//  predicates.add(greaterThanPrice);
-		 
-	    
-	    
 	    cq.where(predicates.toArray(new Predicate[0]));
 	    return em.createQuery(cq).getResultList();
 	}
@@ -94,10 +79,6 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 		for (String title : typeArray) {
 		    inClause.value(title);
 		}
-		
-		
-	    
-	//	cq.select(product).where(product.get("type").in(inClause));
         cq.where(inClause);
 
         TypedQuery<Product> query = em.createQuery(cq);
@@ -118,8 +99,6 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 		    inClause.value(title);
 		}
 		 
-      //  Predicate purityPredicate = cb.equal(product.get("purity"), purity);
-       // Predicate titlePredicate = cb.like(book.get("title"), "%" + title + "%");
         cq.where(inClause);
 
         TypedQuery<Product> query = em.createQuery(cq);
