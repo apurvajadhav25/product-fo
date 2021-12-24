@@ -26,7 +26,7 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	
-	@GetMapping("/products")
+	@GetMapping("/enableProducts")
 	public Iterable<Product> getAllProducts(@RequestParam(name="filter1", required=false) String filter1, 
 											@RequestParam(name="filter2", required=false) String filter2,
 											@RequestParam(name="price", required=false) String price,
